@@ -16,10 +16,10 @@ Technologies Used:
     CSS: For styling and responsive design.
     JavaScript: For handling interactive elements like the dynamic news feed and the burger menu.
     PHP: (Optional, based on external file references) Could be used for dynamic data loading in the news section (as shown in the project’s script).
-Proverbs Flashcards Program
-Project Description:
+    
+2. Proverbs Flashcards Program Project Description:
 
-2. The Proverbs Flashcards program is an interactive tool designed to help users learn and recall common proverbs. It presents the user with a partial proverbial phrase, with the last word missing, and asks them to guess the missing word. After the user submits their guess, the program checks whether the guess is correct and provides immediate feedback.
+The Proverbs Flashcards program is an interactive tool designed to help users learn and recall common proverbs. It presents the user with a partial proverbial phrase, with the last word missing, and asks them to guess the missing word. After the user submits their guess, the program checks whether the guess is correct and provides immediate feedback.
 Features:
 
     Random Proverbs: A proverb is randomly selected from a predefined dictionary of common proverbs.
