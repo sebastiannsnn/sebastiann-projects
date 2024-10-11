@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting List - Cycle Owls Student Club</title>
+    <link rel="stylesheet" href="waiting_list.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="cycle_owls.png" alt="Cycle Owls Logo">
+            </div>
+            <nav class="nav-menu">
+                <div class="burger-menu" id="burger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="menu-text" id="menu-text">Menu</div>
+                <ul class="menu-items" id="menu-items">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="Rides.html">Ride Events</a></li>
+                    <li><a href="Other.html">Other Events</a></li>
+                    <li><a href="News.html">News</a></li>
+                    <li><a href="Membership.html">Membership</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="waiting-list-section">
+        <div class="waiting-list-content">
+            <h2>Ride Events Waiting List</h2>
+            <div id="waiting-list">
+                <!-- Waiting list events will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('burger-menu').addEventListener('click', function() {
+            var menuItems = document.getElementById('menu-items');
+            if (menuItems.style.display === 'flex') {
+                menuItems.style.display = 'none';
+            } else {
+                menuItems.style.display = 'flex';
+            }
+        });
+
+        // Fetch and display waiting list events
+        fetch('get_waiting_events.php')
+        .then(response => response.json())
+        .then(data => {
+            const waitingList = document.getElementById('waiting-list');
+            data.forEach(event => {
+                const eventItem = document.createElement('div');
+                eventItem.className = 'waiting-event-item';
+                eventItem.innerHTML = `
+                    <p><strong>${event.name}</strong></p>
+                    <p>${event.date}</p>
+                    <p>${event.location}</p>
+                    <button onclick='approveEvent(${event.id})'>Approve</button>
+                    <button onclick='denyEvent(${event.id})'>Deny</button>
+                `;
+                waitingList.appendChild(eventItem);
+            });
+        });
+
+        function approveEvent(eventId) {
+            updateEventStatus(eventId, 'approved');
+        }
+
+        function denyEvent(eventId) {
+            updateEventStatus(eventId, 'rejected');
+        }
+
+        function updateEventStatus(eventId, status) {
+            fetch('edit_event.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `id=${eventId}&status=${status}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data === 'Event updated successfully') {
+                    // Reload the waiting list
+                    location.reload();
+                } else {
+                    alert('Error: ' + data);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

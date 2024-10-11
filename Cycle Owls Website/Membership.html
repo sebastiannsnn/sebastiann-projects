@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership - Cycle Owls Student Club</title>
+    <link rel="stylesheet" href="Membership.css">
+    <script>
+        // JavaScript for form validation
+        function validateForm(event) {
+            var password = document.getElementById('password').value;
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                event.preventDefault(); // Prevent form submission
+                return false;
+            }
+            return true; // Allow form submission
+        }
+
+        function validateAnnouncementForm(event) {
+            var subject = document.getElementById('subject').value;
+            var wordCount = subject.trim().split(/\s+/).length;
+
+            if (wordCount > 5) {
+                alert('Subject must be 5 words or less.');
+                event.preventDefault();
+                return false;
+            }
+            return true;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('announcementForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                if (validateAnnouncementForm(event)) {
+                    const formData = new FormData(this);
+                    fetch('send_announcement.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('announcement-info').innerText = `Announcement will be sent to ${data.recipientCount} members.`;
+                        } else {
+                            alert('Error: ' + (data.error || 'Unknown error occurred.'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred while sending the announcement.');
+                    });
+                }
+            });
+        });
+
+        document.getElementById('burger-menu').addEventListener('click', function() {
+            var menuItems = document.getElementById('menu-items');
+            menuItems.style.display = menuItems.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        function openAdminLogin() {
+            document.getElementById("adminLoginModal").style.display = "block";
+        }
+
+        function closeAdminLogin() {
+            document.getElementById("adminLoginModal").style.display = "none";
+        }
+
+        function openAnnouncementForm() {
+            document.getElementById("announcementFormModal").style.display = "block";
+        }
+
+        function closeAnnouncementForm() {
+            document.getElementById("announcementFormModal").style.display = "none";
+        }
+
+        function adminLogin(event) {
+            event.preventDefault();
+            const password = document.getElementById('adminPassword').value;
+            if (password === '12345') {
+                window.location.href = 'admin_members_list.html';
+            } else {
+                alert('Incorrect password');
+            }
+        }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="cycle_owls.png" alt="Cycle Owls Logo">
+            </div>
+            <nav class="nav-menu">
+                <div class="burger-menu" id="burger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="menu-text" id="menu-text">Menu</div>
+                <ul class="menu-items" id="menu-items">
+                    <li><a href="CYCLE OWLS.html">Home</a></li>
+                    <li><a href="About.html">About</a></li>
+                    <li><a href="Rides.html">Ride Events</a></li>
+                    <li><a href="Other.html">Other Events</a></li>
+                    <li><a href="News.html">News</a></li>
+                    <li><a href="Membership.html">Membership</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="membership-section">
+        <div class="membership-content">
+            <div class="description">
+                <h2>Benefits of Joining Cycle Owls</h2>
+                <p>Join the Cycle Owls Student Club to stay up to date with the latest cycling events, access exclusive Cycle Owls apparel, and receive important news and updates via email. Our club offers a vibrant community and various membership options to suit your needs.</p>
+            </div>
+            <div class="form-container">
+                <h2>Membership Signup</h2>
+                <form id="membershipForm" action="add_member.php" method="POST" onsubmit="return validateForm(event)">
+                    <label for="forename">Forename:</label>
+                    <input type="text" id="forename" name="forename" required>
+
+                    <label for="surname">Surname:</label>
+                    <input type="text" id="surname" name="surname" required>
+
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required pattern="^[0-9\-+\(\)\s]*$" title="Valid phone number">
+
+                    <label for="address">Home Address:</label>
+                    <textarea id="address" name="address" required></textarea>
+
+                    <label for="emergency_contact">Emergency Contact Name:</label>
+                    <input type="text" id="emergency_contact" name="emergency_contact" required>
+
+                    <label for="emergency_phone">Emergency Contact Number:</label>
+                    <input type="tel" id="emergency_phone" name="emergency_phone" required pattern="^[0-9\-+\(\)\s]*$" title="Valid phone number">
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+
+                    <label for="membership_option">Membership Option:</label>
+                    <select id="membership_option" name="membership_option" required>
+                        <option value="standard">Standard</option>
+                        <option value="student">Student</option>
+                        <option value="senior">Senior</option>
+                    </select>
+
+                    <label for="payment_method">Preferred Payment Method:</label>
+                    <select id="payment_method" name="payment_method" required>
+                        <option value="card">Card</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="cash">Cash</option>
+                    </select>
+
+                    <label for="auto_renew">Automatic Renewal:</label>
+                    <select id="auto_renew" name="auto_renew" required>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+
+                    <label for="consent">Consent to Receive Emails:</label>
+                    <select id="consent" name="consent" required>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+            <div class="admin-buttons">
+                <button onclick="openAdminLogin()">Members List</button>
+                <button onclick="openAnnouncementForm()">Send Announcement</button>
+            </div>
+        </div>
+        <div class="images-section">
+            <img src="party_owls.jpg" alt="Party Owls">
+            <img src="library_owls.jpg" alt="Library Owls">
+        </div>
+    </section>
+
+    <div id="adminLoginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAdminLogin()">&times;</span>
+            <h2>Admin Login</h2>
+            <form id="adminLoginForm" onsubmit="return adminLogin(event)">
+                <label for="adminPassword">Password:</label>
+                <input type="password" id="adminPassword" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="announcementFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAnnouncementForm()">&times;</span>
+            <h2>Send Announcement</h2>
+            <form id="announcementForm" action="send_announcement.php" method="POST" enctype="multipart/form-data" onsubmit="return validateAnnouncementForm(event)">
+                <label for="subject">Subject (max 5 words):</label>
+                <input type="text" id="subject" name="subject" required>
+
+                <label for="sender">Sender's Name:</label>
+                <input type="text" id="sender" name="sender" required>
+
+                <label for="attachment">Attachment:</label>
+                <input type="file" id="attachment" name="attachment">
+
+                <label for="send_date">Send Date:</label>
+                <input type="date" id="send_date" name="send_date" required>
+
+                <label for="send_time">Send Time:</label>
+                <input type="time" id="send_time" name="send_time" required>
+
+                <label for="priority">Priority:</label>
+                <select id="priority" name="priority" required>
+                    <option value="high">High</option>
+                    <option value="normal">Normal</option>
+                    <option value="low">Low</option>
+                </select>
+
+                <button type="submit">Send Announcement</button>
+                <p id="announcement-info"></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('burger-menu').addEventListener('click', function() {
+            var menuItems = document.getElementById('menu-items');
+            menuItems.style.display = menuItems.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        function openAdminLogin() {
+            document.getElementById("adminLoginModal").style.display = "block";
+        }
+
+        function closeAdminLogin() {
+            document.getElementById("adminLoginModal").style.display = "none";
+        }
+
+        function openAnnouncementForm() {
+            document.getElementById("announcementFormModal").style.display = "block";
+        }
+
+        function closeAnnouncementForm() {
+            document.getElementById("announcementFormModal").style.display = "none";
+        }
+
+        function adminLogin(event) {
+            event.preventDefault();
+            const password = document.getElementById('adminPassword').value;
+            if (password === '12345') {
+                window.location.href = 'admin_members_list.html';
+            } else {
+                alert('Incorrect password');
+            }
+        }
+    </script>
+</body>
+</html>

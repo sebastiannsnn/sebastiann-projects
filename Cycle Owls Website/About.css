@@ -1,0 +1,301 @@
+/* General styles for both layouts */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+}
+
+.header {
+    background-color: rgba(0, 128, 0, 0.5);
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.header-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    width: 110px;
+    height: 110px;
+    border-radius: 5px;
+}
+
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.burger-menu span {
+    background-color: white;
+    height: 3px;
+    margin: 4px 0;
+    width: 25px;
+}
+
+.menu-items {
+    display: none;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 128, 0, 0.938);
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    width: 200px;
+    border-radius: 5px;
+}
+
+.menu-items li {
+    padding: 10px;
+    text-align: right;
+}
+
+.menu-items a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-family: Tahoma, sans-serif;
+}
+
+.intro {
+    background-color: rgba(127, 221, 177, 0.678);
+    padding: 20px; /* Reduced padding for smaller gap above title */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.intro-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+    width: 100%;
+}
+
+.title h1 {
+    font-size: 1.5em; /* Increased font size */
+    margin-bottom: 30px;
+    font-family: fantasy, sans-serif;
+}
+
+.content-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10px; /* Add some padding for spacing */
+}
+
+.description {
+    font-size: 12px; /* Increased font size */
+    width: 90%;
+    margin-bottom: 10px;
+    text-align: justify; /* Justify the text in the description */
+}
+
+.intro-image {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.intro-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.about-details {
+    background-color: white;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.about-content {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-image {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.about-description {
+    font-size: 12px; /* Increased font size */
+    width: 90%;
+    text-align: justify; /* Justify the text in the description */
+}
+
+.footer {
+    background-color: rgba(255, 0, 255, 0.1);
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-content {
+    width: 90%;
+    text-align: center;
+    font-size: 0.9em;
+    font-family: Tahoma, sans-serif;
+    color: rgb(167, 29, 209);
+}
+
+.footer a {
+    color: rgb(250, 10, 250);
+    font-weight: bold;
+    text-decoration: none;
+    font-family: Tahoma, sans-serif;
+    font-size: 1.2em;
+}
+
+/* Media query for screens 375px and below */
+@media (max-width: 375px) {
+    .logo img {
+        width: 105px;
+        height: 105px;
+        border-radius: 5px;
+        position: relative;
+        top: 15px; /* Adjust logo position 15px lower */
+    }
+
+    .menu-text {
+        display: inline-block;
+        font-family: Tahoma, sans-serif;
+        color: white;
+        font-size: 1.2em;
+        margin-right: 10px; /* Adjust space between menu text and burger menu */
+    }
+}
+
+/* Media query for larger screens (1024px and up) */
+@media (min-width: 1024px) {
+    body {
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+
+    .header {
+        background-color: rgba(0, 128, 0, 0.5);
+        justify-content: center;
+        position: relative;
+    }
+
+    .header-content {
+        width: 90%;
+        justify-content: flex-start;
+    }
+
+    .logo {
+        position: absolute;
+        left: 5%;
+        top: -15px;
+    }
+
+    .logo img {
+        width: 140px;
+        height: 140px;
+    }
+
+    .nav-menu {
+        display: flex;
+    }
+
+    .burger-menu {
+        display: none;
+    }
+
+    .menu-text {
+        display: none;
+    }
+
+    .menu-items {
+        display: flex;
+        flex-direction: row;
+        background-color: transparent;
+        position: static;
+        width: auto;
+        border-radius: 0;
+        margin-left: 170px;
+    }
+
+    .menu-items li {
+        padding: 0 15px;
+    }
+
+    .intro-content {
+        flex-direction: column;
+    }
+
+    .title h1 {
+        font-size: 2em;
+    }
+
+    .content-row {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0; /* Remove padding for larger screens */
+    }
+
+    .description {
+        font-size: 14px; /* Increased font size */
+        width: 45%;
+        text-align: justify; /* Justify the text in the description */
+    }
+
+    .intro-image {
+        width: 45%;
+    }
+
+    .about-details {
+        padding: 40px 0;
+    }
+
+    .about-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .about-image {
+        width: 45%;
+    }
+
+    .about-description {
+        width: 45%;
+        font-size: 14px; /* Increased font size */
+    }
+
+    .footer-content {
+        font-size: 1.1em;
+    }
+
+    .footer a {
+        font-size: 2em;
+    }
+}
