@@ -1,0 +1,17 @@
+[06-Jun-2024 12:56:48 UTC] Invalid JSON input
+[06-Jun-2024 12:58:45 UTC] Raw input: forename=Sebastian&surname=Nowak&gender=male&dob=1992-05-04&email=esnoswjck%40gmail.com&phone=07596809817&address=SA4&emergency_contact=Ro&emergency_phone=121&password=12345&membership_option=standard&payment_method=card&auto_renew=yes&consent=yes
+[06-Jun-2024 12:58:45 UTC] Invalid JSON input: Syntax error
+[06-Jun-2024 12:59:28 UTC] Raw input: {"forename":"Sebastian","surname":"Nowak","gender":"male","dob":"1992-05-04","email":"esnowjack@gmail.com","phone":"07596809817","address":"sa4","emergency_contact":"Rom","emergency_phone":"1111","membership_option":"student","payment_method":"card","auto_renew":"yes","consent":"yes"}
+[06-Jun-2024 13:01:56 UTC] Raw input: forename=Sebastian&surname=Nowak&gender=male&dob=1992-05-04&email=esnoswjack%40gmail.com&phone=07596809817&address=sa4&emergency_contact=rom&emergency_phone=1212&password=1234&membership_option=student&payment_method=card&auto_renew=yes&consent=yes
+[06-Jun-2024 13:01:56 UTC] JSON decode error: Syntax error
+[06-Jun-2024 13:02:58 UTC] Raw input: forename=Sebastian&surname=Nowak&gender=male&dob=1992-05-04&email=esnoswjack%40gmail.com&phone=07596809817&address=sa4&emergency_contact=rom&emergency_phone=1212&password=123&membership_option=student&payment_method=card&auto_renew=yes&consent=yes
+[06-Jun-2024 13:02:58 UTC] JSON decode error: Syntax error
+[06-Jun-2024 13:05:39 UTC] Raw input: forename=Sebastian&surname=Nowak&gender=male&dob=1992-05-04&email=esnowjack%40gmail.com&phone=1212&address=SA&emergency_contact=ABC&emergency_phone=12121&password=12345&membership_option=student&payment_method=cash&auto_renew=yes&consent=yes
+[06-Jun-2024 13:05:39 UTC] JSON decode error: Syntax error
+[06-Jun-2024 13:08:05 UTC] Raw input: forename=Sebastian&surname=Nowak&gender=male&dob=1992-05-04&email=esnowjack%40gmail.com&phone=07596809817&address=sa&emergency_contact=Rom&emergency_phone=1212&password=123&membership_option=standard&payment_method=card&auto_renew=yes&consent=yes
+[06-Jun-2024 13:08:05 UTC] JSON decode error: Syntax error
+[06-Jun-2024 13:19:14 UTC] Raw input: forename=Sebastian&surname=Nowak&gender=male&dob=1992-05-04&email=esnowjack%40gmail.com&phone=07596809817&address=sa4&emergency_contact=se&emergency_phone=1212&password=123&membership_option=standard&payment_method=card&auto_renew=yes&consent=yes
+[06-Jun-2024 13:19:14 UTC] JSON decode error: Syntax error
+[06-Jun-2024 13:32:35 UTC] Raw input: {"forename":"Sebastian","surname":"Nowak","gender":"male","dob":"1992-05-04","email":"esnowjack@gmail.com","phone":"07596809817","address":"sa4","emergency_contact":"Rom","emergency_phone":"1212","membership_option":"student","payment_method":"card","auto_renew":"yes","consent":"yes"}
+[06-Jun-2024 14:30:09 UTC] Raw input: forename=Sebastian&surname=Nowak&gender=male&dob=1992-05-04&email=esnowjack%40gmail.com&phone=07596809817&address=SA4&emergency_contact=Rom&emergency_phone=111111&password=12345&membership_option=standard&payment_method=card&auto_renew=yes&consent=yes
+[06-Jun-2024 14:30:09 UTC] JSON decode error: Syntax error

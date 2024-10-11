@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Cycle Owls Student Club</title>
+    <link rel="stylesheet" href="About.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="cycle_owls.png" alt="Cycle Owls Logo">
+            </div>
+            <nav class="nav-menu">
+                <div class="burger-menu" id="burger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="menu-text" id="menu-text">Menu</div>
+                <ul class="menu-items" id="menu-items">
+                    <li><a href="CYCLE OWLS.html">Home</a></li>
+                    <li><a href="About.html">About</a></li>
+                    <li><a href="Rides.html">Ride Events</a></li>
+                    <li><a href="Other.html">Other Events</a></li>
+                    <li><a href="News.html">News</a></li>
+                    <li><a href="Membership.html">Membership</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="intro">
+        <div class="intro-content">
+            <div class="title">
+                <h1>ABOUT THE CYCLE OWLS STUDENT CLUB</h1>
+            </div>
+            <div class="content-row">
+                <div class="intro-image">
+                    <img src="lake_owls.jpg" alt="About Cycle Owls Photo">
+                </div>
+                <div class="description">
+                    <p>The Cycle Owls Student Club is a vibrant community of students from OU who share a passion for cycling and adventure. We welcome cyclists of all levels, from beginners to seasoned riders. Our mission is to promote cycling as a fun, healthy, and environmentally friendly mode of transportation.</p>
+                    <p>We organize weekly rides, exploring different routes and trails, and offer a variety of social events and gatherings. Our club also provides resources and support for students who want to improve their cycling skills and knowledge.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about-details">
+        <div class="about-content">
+            <div class="about-description">
+                <p>Join us to connect with fellow students, stay active, and enjoy the great outdoors. Whether you're looking for a casual ride or an intense workout, the Cycle Owls have something for everyone.</p>
+                <p>We believe in the power of cycling to bring people together, improve health and well-being, and make a positive impact on our environment. Come be a part of our community and experience the joy of cycling with us!</p>
+                <p>Our community thrives on sharing ideas and studying together. We organize group study sessions and discussions, providing a supportive environment where members can learn from each other and grow together.</p>
+            </div>
+            <div class="about-image">
+                <img src="study_owls.jpg" alt="Cycle Owls Activity">
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>BECOME A CYCLING OWL! KEEP UP TO DATE AND SHARE YOUR PASSION FOR SCIENCE AND CYCLING WITH US. <a href="Membership.html">JOIN NOW!</a></p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('burger-menu').addEventListener('click', function() {
+            var menuItems = document.getElementById('menu-items');
+            if (menuItems.style.display === 'flex') {
+                menuItems.style.display = 'none';
+            } else {
+                menuItems.style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>
