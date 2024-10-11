@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Events - Cycle Owls Student Club</title>
+    <link rel="stylesheet" href="Rides.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="cycle_owls.png" alt="Cycle Owls Logo">
+            </div>
+            <nav class="nav-menu">
+                <div class="burger-menu" id="burger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="menu-text" id="menu-text">Menu</div>
+                <ul class="menu-items" id="menu-items">
+                    <li><a href="CYCLE OWLS.html">Home</a></li>
+                    <li><a href="About.html">About</a></li>
+                    <li><a href="Rides.html">Ride Events</a></li>
+                    <li><a href="Other.html">Other Events</a></li>
+                    <li><a href="News.html">News</a></li>
+                    <li><a href="Membership.html">Membership</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="ride-events-intro">
+        <div class="intro-content">
+            <div class="title">
+                <h1>RIDE EVENTS</h1>
+            </div>
+            <div class="description">
+                <p>Here you can find all the upcoming ride events. The closest rides to the date are listed first. You can also add or create a new ride event.</p>
+                <p>Click on the event squares to see more details. Colors indicate the type of ride:</p>
+                <ul>
+                    <li class="road">Road</li>
+                    <li class="cyclocross">Cyclocross</li>
+                    <li class="mountain">Mountain Bike</li>
+                    <li class="race">Race</li>
+                </ul>
+                <button onclick="openForm()">Add Event</button>
+                <button onclick="openAdminLogin()">Waiting List</button>
+            </div>
+        </div>
+    </section>
+    <section class="ride-events">
+        <div class="events-content" id="events-content">
+            <!-- Event cards will be dynamically inserted here -->
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>BECOME A CYCLING OWL! KEEP UP TO DATE AND SHARE YOUR PASSION FOR SCIENCE AND CYCLING WITH US. <a href="#">JOIN NOW!</a></p>
+        </div>
+    </footer>
+
+    <!-- Modal form for adding events -->
+    <div id="eventFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeForm()">&times;</span>
+            <h2>Add Ride Event</h2>
+            <form id="eventForm" action="add_event.php" method="POST">
+                <label for="name">Name of Ride:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="type">Type of Ride:</label>
+                <select id="type" name="type" required>
+                    <option value="road">Road</option>
+                    <option value="cyclocross">Cyclocross</option>
+                    <option value="mountain">Mountain Bike</option>
+                    <option value="race">Race</option>
+                </select>
+                
+                <label for="date">Date of Ride:</label>
+                <input type="date" id="date" name="date" required>
+                
+                <label for="time">Start Time:</label>
+                <input type="time" id="time" name="time" required>
+                
+                <label for="duration">Duration (mins):</label>
+                <input type="number" id="duration" name="duration" required>
+                
+                <label for="meeting">Meeting Point:</label>
+                <input type="text" id="meeting" name="meeting" required>
+                
+                <label for="distance">Distance (km):</label>
+                <input type="number" id="distance" name="distance" required>
+                
+                <label for="elevation">Elevation (m):</label>
+                <input type="number" id="elevation" name="elevation" required>
+                
+                <label for="group">Maximum Group Size:</label>
+                <input type="number" id="group" name="group" required>
+                
+                <label for="leader">Name of Leader:</label>
+                <input type="text" id="leader" name="leader" required>
+                
+                <label for="contact">Contact Number:</label>
+                <input type="tel" id="contact" name="contact" required>
+                
+                <label for="altcontact">Alternative Contact Number:</label>
+                <input type="tel" id="altcontact" name="altcontact">
+                
+                <label for="comments">Comments:</label>
+                <textarea id="comments" name="comments"></textarea>
+                
+                <button type="submit">Add Event</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal form for editing events -->
+    <div id="editEventFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditForm()">&times;</span>
+            <h2>Edit Ride Event</h2>
+            <form id="editEventForm" action="edit_event.php" method="POST">
+                <input type="hidden" id="editEventId" name="eventId">
+                <label for="editName">Name of Ride:</label>
+                <input type="text" id="editName" name="name" required>
+                
+                <label for="editType">Type of Ride:</label>
+                <select id="editType" name="type" required>
+                    <option value="road">Road</option>
+                    <option value="cyclocross">Cyclocross</option>
+                    <option value="mountain">Mountain Bike</option>
+                    <option value="race">Race</option>
+                </select>
+                
+                <label for="editDate">Date of Ride:</label>
+                <input type="date" id="editDate" name="date" required>
+                
+                <label for="editTime">Start Time:</label>
+                <input type="time" id="editTime" name="time" required>
+                
+                <label for="editDuration">Duration (mins):</label>
+                <input type="number" id="editDuration" name="duration" required>
+                
+                <label for="editMeeting">Meeting Point:</label>
+                <input type="text" id="editMeeting" name="meeting" required>
+                
+                <label for="editDistance">Distance (km):</label>
+                <input type="number" id="editDistance" name="distance" required>
+                
+                <label for="editElevation">Elevation (m):</label>
+                <input type="number" id="editElevation" name="elevation" required>
+                
+                <label for="editGroup">Maximum Group Size:</label>
+                <input type="number" id="editGroup" name="group" required>
+                
+                <label for="editLeader">Name of Leader:</label>
+                <input type="text" id="editLeader" name="leader" required>
+                
+                <label for="editContact">Contact Number:</label>
+                <input type="tel" id="editContact" name="contact" required>
+                
+                <label for="editAltContact">Alternative Contact Number:</label>
+                <input type="tel" id="editAltContact" name="altcontact">
+                
+                <label for="editComments">Comments:</label>
+                <textarea id="editComments" name="comments"></textarea>
+                
+                <label for="editStatus">Status:</label>
+                <select id="editStatus" name="status" required>
+                    <option value="proposed">Proposed</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+                
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal form for admin login -->
+    <div id="adminLoginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAdminLogin()">&times;</span>
+            <h2>Admin Login</h2>
+            <form id="adminLoginForm" onsubmit="return adminLogin(event, 'waiting_list.html')">
+                <label for="adminPassword">Password:</label>
+                <input type="password" id="adminPassword" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('burger-menu').addEventListener('click', function() {
+            var menuItems = document.getElementById('menu-items');
+            if (menuItems.style.display === 'flex') {
+                menuItems.style.display = 'none';
+            } else {
+                menuItems.style.display = 'flex';
+            }
+        });
+
+        function openForm() {
+            document.getElementById("eventFormModal").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("eventFormModal").style.display = "none";
+        }
+
+        function openEditForm(event) {
+            document.getElementById("editEventId").value = event.id;
+            document.getElementById("editName").value = event.name;
+            document.getElementById("editType").value = event.type;
+            document.getElementById("editDate").value = event.date;
+            document.getElementById("editTime").value = event.time;
+            document.getElementById("editDuration").value = event.duration;
+            document.getElementById("editMeeting").value = event.meeting;
+            document.getElementById("editDistance").value = event.distance;
+            document.getElementById("editElevation").value = event.elevation;
+            document.getElementById("editGroup").value = event.group;
+            document.getElementById("editLeader").value = event.leader;
+            document.getElementById("editContact").value = event.contact;
+            document.getElementById("editAltContact").value = event.altcontact;
+            document.getElementById("editComments").value = event.comments;
+            document.getElementById("editStatus").value = event.status;
+
+            document.getElementById("editEventFormModal").style.display = "block";
+        }
+
+        function closeEditForm() {
+            document.getElementById("editEventFormModal").style.display = "none";
+        }
+
+        function openAdminLogin() {
+            document.getElementById("adminLoginModal").style.display = "block";
+        }
+
+        function closeAdminLogin() {
+            document.getElementById("adminLoginModal").style.display = "none";
+        }
+
+        function adminLogin(event, redirectUrl) {
+            event.preventDefault();
+            const password = document.getElementById('adminPassword').value;
+            if (password === '12345') {
+                window.location.href = redirectUrl;
+            } else {
+                alert('Incorrect password');
+            }
+        }
+
+        function adminEdit(event) {
+            const password = prompt("Enter admin password to edit:");
+            if (password === '12345') {
+                openEditForm(event);
+            } else {
+                alert('Incorrect password');
+            }
+        }
+
+        // Fetch and display approved events
+        fetch('get_events.php')
+        .then(response => response.json())
+        .then(data => {
+            const eventsContent = document.getElementById('events-content');
+            data.sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort events by date
+            data.forEach((event, index) => {
+                const eventCard = document.createElement('div');
+                eventCard.className = `event-card ${event.type}`;
+                eventCard.innerHTML = `<p class="${event.type}">${event.date}<br>${event.meeting}</p>`;
+                eventCard.addEventListener('click', () => {
+                    // Display full details
+                    const details = `
+                        Name of Ride: ${event.name}\n
+                        Type of Ride: ${event.type}\n
+                        Date of Ride: ${event.date}\n
+                        Start Time: ${event.time}\n
+                        Duration: ${event.duration} mins\n
+                        Meeting Point: ${event.meeting}\n
+                        Distance: ${event.distance} km\n
+                        Elevation: ${event.elevation} m\n
+                        Maximum Group Size: ${event.group}\n
+                        Name of Leader: ${event.leader}\n
+                        Contact Number: ${event.contact}\n
+                        Alternative Contact Number: ${event.altcontact}\n
+                        Comments: ${event.comments}\n
+                        Status: ${event.status}
+                    `;
+                    alert(details);
+                    if (confirm("Do you want to edit this event?")) {
+                        adminEdit({ 
+                            id: event.id, 
+                            name: event.name, 
+                            type: event.type, 
+                            date: event.date, 
+                            time: event.time, 
+                            duration: event.duration, 
+                            meeting: event.meeting, 
+                            distance: event.distance, 
+                            elevation: event.elevation, 
+                            group: event.group, 
+                            leader: event.leader, 
+                            contact: event.contact, 
+                            altcontact: event.altcontact, 
+                            comments: event.comments, 
+                            status: event.status 
+                        });
+                    }
+                });
+                if (new Date(event.date) < new Date()) {
+                    eventCard.style.backgroundColor = 'grey'; // Change color if the date has passed
+                }
+                eventsContent.appendChild(eventCard);
+            });
+        });
+    </script>
+</body>
+</html>
