@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Freight
+comment0.text=\r\n\ class\ Freight\ -\ write\ a\ description\ of\ the\ class\ here\r\n\r\n\ @author\ M250\ module\ team\r\n\ @version\ v1\r\n
+comment1.params=anAddress
+comment1.target=Freight(java.lang.String)
+comment1.text=\r\n\ Constructor\ to\ set\ the\ address\ for\ the\ freight.\r\n\ @param\ anAddress\ the\ address\ the\ freight\ is\ to\ be\ sent\ to\r\n
+comment2.params=
+comment2.target=java.lang.String\ getAddress()
+comment2.text=\r\n\ Gets\ the\ address.\r\n\ @return\ the\ address\r\n
+comment3.params=
+comment3.target=java.lang.String\ getDateSent()
+comment3.text=\r\n\ Gets\ the\ date\ sent.\r\n\ @return\ the\ dateSent\r\n
+comment4.params=aPostDate
+comment4.target=void\ setDateSent(java.lang.String)
+comment4.text=\r\n\ Sets\ the\ date\ sent.\r\n\ @param\ aPostDate\ the\ dateSent\ to\ set\r\n
+numComments=5

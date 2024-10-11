@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=PriceQuoter
+comment0.text=\r\n\ Interface\ to\ provide\ pricing\ based\ on\ a\ unit\ price.\r\n\r\n\ @author\ Sebastian\ Nowak\r\n\ @version\ v1\r\n
+comment1.params=unitPrice
+comment1.target=double\ createQuote(int)
+comment1.text=\r\n\ Creates\ a\ quote\ based\ on\ a\ unit\ price.\r\n\ @param\ unitPrice\ the\ price\ per\ unit\r\n\ @return\ the\ calculated\ quote\r\n
+numComments=2
